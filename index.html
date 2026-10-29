@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Little Diary ✿</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand"><span class="brand-icon">♡</span><span>little diary</span><small>your own little corner</small></div>
+      <nav aria-label="Main navigation">
+        <button class="nav-item active" data-view="home">⌂ <span>Home</span></button>
+        <button class="nav-item" data-view="write">✎ <span>New entry</span></button>
+        <button class="nav-item" data-view="gallery">▦ <span>Memory garden</span></button>
+        <button class="nav-item" data-view="moods">☻ <span>Mood tracker</span></button>
+        <button class="nav-item" data-view="settings">⚙ <span>Settings</span></button>
+      </nav>
+      <div class="sidebar-note">“You are allowed<br>to grow slowly.” <span>✿</span></div>
+      <div class="privacy-note">🔒 Saved only in this browser</div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow" id="today-label">YOUR LITTLE SPACE</p>
+          <h1 id="greeting">Hello, lovely human <span>♡</span></h1>
+          <p class="subheading" id="subtitle">A place to keep the little things.</p>
+        </div>
+        <button class="primary-btn" id="header-new">＋ Write an entry</button>
+      </header>
+
+      <section class="view" id="home-view">
+        <div class="hero-card">
+          <div class="hero-copy">
+            <span class="pill">A gentle reminder ✨</span>
+            <h2>Every day is a page<br>you get to fill.</h2>
+            <p>It doesn't have to be a perfect day to be worth remembering.</p>
+            <button class="light-btn" id="hero-write">Write about today ↗</button>
+          </div>
+          <div class="hero-art" aria-hidden="true">
+            <div class="sun"></div><div class="cloud cloud-one"></div><div class="cloud cloud-two"></div>
+            <div class="hill hill-back"></div><div class="hill hill-front"></div>
+            <div class="flower f-one">✿</div><div class="flower f-two">✿</div><div class="flower f-three">✿</div>
+          </div>
+        </div>
+
+        <div class="section-heading">
+          <div><p class="eyebrow">CHECK IN WITH YOURSELF</p><h2>How are you feeling?</h2></div>
+          <span class="soft-label" id="mood-date">Today's mood</span>
+        </div>
+        <div class="mood-row" id="quick-moods">
+          <button class="mood-option" data-mood="Amazing"><span>😄</span><small>Amazing</small></button>
+          <button class="mood-option" data-mood="Good"><span>😊</span><small>Good</small></button>
+          <button class="mood-option" data-mood="Okay"><span>😌</span><small>Okay</small></button>
+          <button class="mood-option" data-mood="Low"><span>🥺</span><small>Low</small></button>
+          <button class="mood-option" data-mood="Rough"><span>🌧️</span><small>Rough</small></button>
+        </div>
+
+        <div class="section-heading entries-heading">
+          <div><p class="eyebrow">LITTLE PIECES OF YOUR LIFE</p><h2>Recent memories <span class="tiny-flower">✿</span></h2></div>
+          <button class="text-btn" data-go="gallery">See all →</button>
+        </div>
+        <div class="entry-grid" id="recent-entries"></div>
+        <div class="empty-state" id="home-empty">
+          <div class="empty-illustration">📔</div><h3>Your story starts here</h3>
+          <p>Write your first entry and give today's thoughts a little home.</p>
+          <button class="primary-btn" id="empty-write">Create my first entry</button>
+        </div>
+      </section>
+
+      <section class="view hidden" id="write-view">
+        <div class="page-heading"><p class="eyebrow">A PAGE JUST FOR YOU</p><h2 id="editor-title">Dear diary... <span>♡</span></h2><p>Write whatever is on your mind. This space is yours.</p></div>
+        <form id="entry-form" class="editor-card">
+          <label for="entry-title">Give this memory a title</label>
+          <input id="entry-title" maxlength="90" placeholder="A little thing worth remembering..." required>
+          <div class="form-row">
+            <div class="field-grow"><label for="entry-date">Date</label><input id="entry-date" type="date" required></div>
+            <div class="field-grow"><label for="entry-mood">Today's feeling</label><select id="entry-mood"><option>😊 Good</option><option>😄 Amazing</option><option>😌 Okay</option><option>🥺 Low</option><option>🌧️ Rough</option><option>🥰 Loved</option><option>🌱 Hopeful</option></select></div>
+          </div>
+          <label for="entry-content">Let it out</label>
+          <textarea id="entry-content" rows="9" placeholder="Today, I noticed..." required></textarea>
+          <label for="entry-image">Memory image URL <span class="optional">(optional)</span></label>
+          <input id="entry-image" type="url" placeholder="https://example.com/photo.jpg">
+          <div class="editor-footer"><span class="save-hint">♡ Take your time. There is no wrong way to write.</span><div class="button-row"><button type="button" class="secondary-btn" id="cancel-edit">Cancel</button><button class="primary-btn" type="submit">Save this memory ✿</button></div></div>
+        </form>
+      </section>
+
+      <section class="view hidden" id="gallery-view">
+        <div class="page-heading"><p class="eyebrow">YOUR PERSONAL COLLECTION</p><h2>Memory garden <span>✿</span></h2><p>All the little moments you've decided to keep.</p></div>
+        <div class="gallery-tools"><input id="search-entries" type="search" placeholder="⌕  Search your memories..."><select id="filter-mood"><option value="">All moods</option><option>Good</option><option>Amazing</option><option>Okay</option><option>Low</option><option>Rough</option><option>Loved</option><option>Hopeful</option></select></div>
+        <div class="entry-grid" id="all-entries"></div>
+        <div class="empty-state hidden" id="gallery-empty"><div class="empty-illustration">🌷</div><h3>No memories found</h3><p>Try another search, or create a new entry.</p><button class="primary-btn" data-go="write">Write an entry</button></div>
+      </section>
+
+      <section class="view hidden" id="moods-view">
+        <div class="page-heading"><p class="eyebrow">BE KIND TO YOURSELF</p><h2>Your mood garden <span>☁</span></h2><p>There is room for every feeling here.</p></div>
+        <div class="mood-summary" id="mood-summary"></div>
+        <div class="section-heading"><div><p class="eyebrow">YOUR CHECK-INS</p><h2>Recent moods</h2></div></div>
+        <div class="mood-history" id="mood-history"></div>
+      </section>
+
+      <section class="view hidden" id="settings-view">
+        <div class="page-heading"><p class="eyebrow">MAKE YOURSELF AT HOME</p><h2>Little settings <span>⚙</span></h2><p>Make this diary feel a little more like you.</p></div>
+        <div class="settings-card">
+          <label for="display-name">What should your diary call you?</label><input id="display-name" maxlength="35" placeholder="Your name or nickname">
+          <label>Choose your color mood</label>
+          <div class="theme-options">
+            <button class="theme-swatch pink" data-theme="pink"><span>♡</span> Rose</button>
+            <button class="theme-swatch lavender" data-theme="lavender"><span>✿</span> Lavender</button>
+            <button class="theme-swatch mint" data-theme="mint"><span>☘</span> Mint</button>
+            <button class="theme-swatch peach" data-theme="peach"><span>☼</span> Peach</button>
+          </div>
+          <div class="setting-divider"></div>
+          <h3>Your diary data</h3><p class="setting-description">Entries are stored in this browser using local storage. They are not uploaded to a server.</p>
+          <div class="button-row"><button class="secondary-btn" id="export-data">Download backup (.json)</button><button class="danger-btn" id="clear-data">Clear all entries</button></div>
+        </div>
+      </section>
+
+      <footer class="footer">made with a little love <span>♡</span> just for you</footer>
+    </main>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="app.js"></script>
+</body>
+</html>
